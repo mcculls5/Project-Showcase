@@ -12,6 +12,10 @@ The purpose of this list is to document my experience rather than to host workin
   - Hybrid Images
   - Laplacian Detail Enhancement
   - Panorama Stitching
+  - Stereo Vision Depth Map
+  - Convolutional Networks
 - Operating System Internals
   - Virtual Kernel
+  
+
   
