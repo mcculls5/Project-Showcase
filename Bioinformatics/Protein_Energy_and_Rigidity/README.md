@@ -7,6 +7,7 @@ We investigated the use of protein structure data produced by the energy-minimiz
 ## Contents
 As this project is related to classwork, some code must be omitted.
 - **Final Report.pdf** : Describes the results of our exploration.
+- **Project Description.pdf** : The initial description for the exploratory project. **NOTE**: This project is labeled as project 7.
 
 - **Preprocess/** : Contains the python scripts that were used to initially clean and compile the data.
   - **aggregate_raw_em_step_data.py** : Aggregates the mutant energy minimization step data.

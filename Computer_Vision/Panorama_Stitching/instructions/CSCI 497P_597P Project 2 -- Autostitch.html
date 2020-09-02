@@ -1,0 +1,1076 @@
+
+<!-- saved from url=(0063)https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>CSCI 497P/597P Project 2 -- Autostitch</title>
+
+<style type="text/css">
+
+ /* Font Definitions */
+ @font-face
+        {font-family:PMingLiU;
+        panose-1:2 2 3 0 0 0 0 0 0 0;
+        mso-font-alt:\65B0\7D30\660E\9AD4;
+        mso-font-charset:136;
+        mso-generic-font-family:roman;
+        mso-font-pitch:variable;
+        mso-font-signature:3 137232384 22 0 1048577 0;}
+@font-face
+        {font-family:"\@PMingLiU";
+        panose-1:2 2 3 0 0 0 0 0 0 0;
+        mso-font-charset:136;
+        mso-generic-font-family:roman;
+        mso-font-pitch:variable;
+        mso-font-signature:3 137232384 22 0 1048577 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+        {mso-style-parent:"";
+        margin:0in;
+        margin-bottom:.0001pt;
+        mso-pagination:widow-orphan;
+        font-size:12.0pt;
+;       font-family:"Times New Roman";
+        mso-fareast-font-family:"Times New Roman";}
+.page-frame {
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:0px;
+        margin-bottom:0px;
+        width:850px;
+}
+
+.project-title
+{
+}
+
+.class-title {
+   font-size:70%;
+   color:rgb(155,0,0);
+}
+
+.codefrag, .code {
+  font-family: Courier, monospace;
+  text-align:left;
+}
+
+.codefrag {
+  font-size:80%;
+  margin-bottom:1em;
+  margin-top:1em;
+  background-color:#CCDEF0;
+  border:1px solid #A7C0CC;
+  padding: 5px;
+}
+
+.nav-bar {
+        font-family: Arial, helvetica, sans-serif;
+        /*height:30px;*/
+        border-top-color: #036;
+        border-bottom:1px solid #003366;
+        margin-left:auto;
+        margin-right:auto;
+        margin-bottom:10px;
+        align:center;
+        font-size:12pt;
+}
+
+.nav-elem {
+        font-variant:small-caps;
+        margin-left:20px;
+        margin-right:20px;
+        margin-top:10px;
+        margin-bottom:10px;
+}
+
+.nav-elem a:link    {
+        text-decoration: none;
+        color: #000;
+}
+.nav-elem a:visited {
+        text-decoration: none;
+        color: #000;
+}
+
+.nav-elem a:active  {
+        text-decoration: none;
+        color: #000;
+}
+.nav-elem a:hover   {
+        text-decoration: underline;
+        color: #39F;
+}
+
+
+
+
+div.Section1
+
+	{page:Section1;}
+
+ div.MsoNormal
+
+	{margin-bottom:.0001pt;
+
+	font-size:12.0pt;
+
+	font-family:Verdana; //"Times New Roman";
+
+		margin-left: 0in;
+
+	margin-right: 0in;
+
+	margin-top: 0in;
+
+}
+
+
+h1
+{
+   text-align:center;
+   font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+}
+
+h2
+{
+   margin-right:0in;
+   margin-left:0in;
+   font-size:18.0pt;
+   font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+   font-weight:bold;
+}
+
+
+h4
+{
+   font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+}
+
+p
+{
+    margin-right:0in;
+    margin-left:0in;
+    font-size:12.0pt;
+    font-family:"Times New Roman";
+}
+
+a:link
+{
+    color:blue;
+    text-decoration:underline;
+    text-underline:single;
+}
+
+h3
+{
+    margin-right:0in;
+    margin-left:0in;
+    font-size:13.5pt;
+    font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+    font-weight:bold;
+}
+
+ul
+
+	{margin-bottom:0in;}
+
+ li.MsoNormal
+
+	{margin-bottom:.0001pt;
+
+	font-size:12.0pt;
+
+	font-family:"Times New Roman";
+
+		margin-left: 0in;
+
+	margin-right: 0in;
+
+	margin-top: 0in;
+
+}
+
+ p.MsoNormal
+
+	{margin-bottom:.0001pt;
+
+	font-size:12.0pt;
+
+	font-family:"Times New Roman";
+
+		margin-left: 0in;
+
+	margin-right: 0in;
+
+	margin-top: 0in;
+
+}
+
+</style>
+</head>
+
+<body lang="EN-US" link="blue" style="tab-interval: .5in" vlink="blue">
+<div class="page-frame">
+
+<center>
+<div class="nav-bar">
+<span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/#synopsis">Synopsis</a></span>
+<span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/#todo">Tasks</a></span>
+<span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/#usingthegui">Using the GUI</a></span>
+<span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/#debugging">Debugging</a> </span>
+<span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/#turnin">Submission</a> </span>
+<span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/#EC">Extra credit</a></span>
+<span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/#rubric">Rubric</a></span>
+</div>
+</center>
+
+<div class="Section1">
+
+<div style="z-index:1">
+
+<h1>
+        <span class="class-title">CS 497P/597P: Computer Vision, Spring 2020</span><br>
+        <span class="project-title">Project 2: Autostitch</span>
+</h1>
+
+
+<img border="0" width="850px" id="_x0000_i1030" src="./CSCI 497P_597P Project 2 -- Autostitch_files/tn_lorenm.jpg">
+
+<h2>Brief</h2>
+<ul>
+<li>Assigned: 5/4/2020</li>
+<li><b>Code due:</b> Wednesday, May 13th, 9:59pm (via Github)</li>
+<li><b>Artifact due</b>: Thursday, May 14 by 9:59pm (via Canvas)</li>
+</ul>
+<p></p>
+
+</div>
+
+<h2>Working in Pairs</h2>
+You have the option of working in pairs on this assignment. If you would like to do so, you need to:
+<ol>
+    <li>Ideally, don't accept the Github Classroom invitation yet.</li>
+    <li>Find your partner. This must happen by Wednesday at 10pm. There is a
+        "Search for Teammates" feature on Piazza that may be helpful for
+        pairing up.</li>
+    <li><b>One</b> member of the pair should accept the Github Classroom invite.</li>
+    <li>By 10pm Wednesday, one member of the group should email me with the
+        other group member cc'd, letting me know both partners' github
+        usernames, and indicating which has accepted the classroom invite.
+    <b>If you miss this deadline, you will have to work alone.</b></li>
+    <li>By noon on Thursday, I'll make sure both partners have access to the
+        specified repository. If you get me your pairings before Wednesday
+        night, I'll make an effort to grant access sooner.</li>
+    <li>In your repository's base directory, make a file called
+        <tt>usernames.txt</tt> containing the WWU usernames of both
+        partners.</li>
+</ol>
+
+A couple other relevant policies:
+<ul>
+    <li>You may only pair up with someone in your section (e.g., 497P must work with 497P).</li>
+    <li>To use slip days, <b>both members</b> must spend a slip day.</li>
+</ul>
+
+
+<a name="synopsis"></a>
+
+<h2>Synopsis</h2>
+
+<p>In this project, you will implement a system to combine a series of
+horizontally overlapping photographs into a single panoramic image. We'll use
+built-in ORB feature detector and descriptor from the opencv library. You will
+use ORB to first detect discriminating features in the images and find the best
+matching features in the other images. Then, using RANSAC, you will
+automatically align the photographs (determine their overlap and relative
+positions) and then blend the resulting images into a single seamless panorama.
+We have provided you with a graphical interface that lets you view the results
+of the various intermediate steps of the process. We have also provided you
+with some test images and unit tests to help you debug.
+
+
+</p><p class="MsoNormal" style="margin-bottom:12.0pt">
+
+<span style="mso-fareast-font-family: PMingLiU">
+The project will consist of a pipeline of tabs visualized through
+<font face="courier">AutostichUI</font> that will operate on images or intermediate
+results to produce the final panorama output. &nbsp; <br>
+</span></p>
+
+<p>The steps required to create a panorama are listed below. 497P students will implement panorama stitching using a homography motion model, while 597P students will additionally implement a translational model with spherically-warped input images, which allows for full 360-degree panoramas. The steps in square brackets are only used with the spherical warping/translational approach:</p>
+
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="554" style="width:415.8pt;mso-cellspacing:0in;mso-yfti-tbllook:1184;mso-padding-alt:
+
+ 0in 0in 0in 0in">
+
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes">
+
+  <td style="padding:0in 0in 0in 0in">
+
+  <p class="MsoNormal"><span style="mso-fareast-font-family:PMingLiU"><o:p>&nbsp;</o:p></span></p>
+
+  </td>
+
+  <td style="padding:0in 0in 0in 0in">
+
+  <p class="MsoNormal"><u><span style="mso-fareast-font-family:PMingLiU">Step</span></u><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+
+ </tr>
+
+ <tr style="mso-yfti-irow:1;height:11.4pt">
+
+  <td width="28" style="width:21.0pt;padding:0in 0in 0in 0in;height:11.4pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU;color:black">1.</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td width="288" style="width:3.0in;padding:0in 0in 0in 0in;height:11.4pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU">Take pictures on a tripod (or handheld)</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+ </tr>
+
+ <tr style="mso-yfti-irow:2;height:14.25pt">
+
+  <td width="28" style="width:21.0pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU;color:black">2.</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td width="221" style="width:165.75pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU">[Warp to spherical coordinates]</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+ </tr>
+
+ <tr style="mso-yfti-irow:3;height:14.25pt">
+
+  <td width="28" style="width:21.0pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU;color:black">3.</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td width="117" style="width:87.75pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU">Extract features</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+
+ </tr>
+
+ <tr style="mso-yfti-irow:4;height:14.25pt">
+
+  <td width="28" style="width:21.0pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU;color:black">4.</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td width="117" style="width:87.75pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU">Match features</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+ </tr>
+
+ <tr style="mso-yfti-irow:5;height:14.25pt">
+
+  <td width="28" style="width:21.0pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU;color:black">5.</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td width="289" style="width:216.75pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU">Align neighboring pairs using RANSAC</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+ </tr>
+
+ <tr style="mso-yfti-irow:6;height:14.25pt">
+
+  <td width="28" style="width:21.0pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU;color:black">6.</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td width="292" style="width:219.0pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU">Write out list of neighboring translations</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+ </tr>
+
+ <tr style="mso-yfti-irow:7;height:14.25pt">
+
+  <td width="28" style="width:21.0pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU;color:black">7.</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td width="112" style="width:84.0pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU">[Correct for drift (360 only)]</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+ </tr>
+
+ <tr style="mso-yfti-irow:8;height:14.25pt">
+
+  <td width="28" style="width:21.0pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU;color:black">8.</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td width="295" style="width:221.25pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU">Read in [warped] images and blend them</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+ </tr>
+
+ <tr style="mso-yfti-irow:9;mso-yfti-lastrow:yes;height:14.25pt">
+
+  <td width="22" style="width:16.8pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU;color:black">9.</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td width="291" style="width:218.25pt;padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="font-size:10.0pt;font-family:Arial;
+
+  mso-fareast-font-family:PMingLiU">Crop the result and import into a viewer</span><span style="mso-fareast-font-family:PMingLiU"><o:p></o:p></span></p>
+
+  </td>
+
+  <td style="padding:0in 0in 0in 0in;height:14.25pt">
+
+  <p class="MsoNormal"><span style="mso-fareast-font-family:PMingLiU">&nbsp;<o:p></o:p></span></p>
+
+  </td>
+
+ </tr>
+
+</tbody></table>
+
+<p>The lecture slides and notes from lectures 11-17  may be helpful in implementing various pieces of this project.</p>
+
+<p>This project uses Python, Numpy, and Scipy heavily. The documentation is
+generally quite good and we make suggestions for which functions maybe useful.
+If you feel the need to brush up on your numerical python skills, see the
+crash-course on Python and Numpy <a href="http://cs231n.github.io/python-numpy-tutorial/">here</a>.
+
+</p><h2><a name="Downloads">Getting Started</a></h2>
+<p><b>Skeleton code</b>: Github classroom link is available in the Project 2 assignment on Canvas.</p>
+<p><b>Test sets</b>: See the resources subdirectory in your repo. You will find four datasets: <tt>yosemite, campus, melbourne,</tt> and <tt>melbourne_small</tt>.</p>
+<p><b>Software environment:</b>: The lab machines should have the necessary packages installed to run the project code; the software listed for <a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/index.html#setup">Project 1</a> should be all you need for this project as well (please let me know if you find this not to be the case!). The GUI for this project is written using TK, much like the prior project, so remote access should work similarly - please see the Project 1 handout for links to resources, and let me know if you're having trouble running the project remotely.
+
+
+</p><h2><a name="todo"><span class="SpellE"><span style="mso-bookmark:todo">Your Tasks</span></span><span style="mso-bookmark:todo"></span></a></h2>
+
+
+
+<span style="mso-bookmark:todo"></span>
+
+<b>Do not modify the code outside the TODO blocks.</b>
+
+
+<ol start="1" type="1">
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+
+     mso-list:l8 level1 lfo4;tab-stops:list .5in">Warp each image into
+
+     spherical coordinates.&nbsp;(file: <span class="SpellE"><i>warp.py</i></span><i>,
+
+     </i>routine: <span class="SpellE"><i>computeSphericalWarpMappings</i></span><i>)</i> </li>
+
+</ol>
+
+
+
+<p style="margin-left:.5in">[<b>TODO 1</b>] <b>597P only</b> Compute the inverse map to warp the
+
+image by filling in the skeleton code in the <span class="SpellE"><i>computeSphericalWarpMappings</i></span>
+
+routine to:</p>
+
+
+
+<ol start="1" type="1">
+
+ <ol start="1" type="a">
+
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+
+      auto;mso-list:l5 level2 lfo5;tab-stops:list 1.0in">convert the given
+
+      spherical image coordinate into the corresponding planar image coordinate
+
+      using the coordinate transformation equation from the lecture notes</li>
+
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+
+      auto;mso-list:l5 level2 lfo5;tab-stops:list 1.0in">apply radial
+
+      distortion using the equation from the lecture notes </li>
+
+ </ol>
+
+</ol>
+
+
+
+<p style="margin-top:5.0pt;margin-right:0in;margin-bottom:12.0pt;margin-left:
+
+.5in">(Note: When warping images in the GUI, you will have to use the focal length <i>f</i> estimates for the
+
+images provided <a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/#debugging">below</a>.<b>
+
+If you use a different image size, remember to scale <i>f</i> according to
+
+the image size.)</b></p>
+
+<p style="margin-top:5.0pt;margin-right:0in;margin-bottom:12.0pt;margin-left:
+
+.5in">(Note 2: This step is not used when estimating homographies between
+images, only translations.)</p>
+
+
+<ol start="2" type="1">
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+
+     mso-list:l1 level1 lfo6;tab-stops:list .5in">Compute the alignment of
+
+     image pairs. (file: <span class="SpellE"><i>alignment.py</i></span>,
+
+     routines: <span class="SpellE"><i>alignPair</i></span>,<i> <span class="SpellE">getInliers</span></i>, <i> <span class="SpellE">computeHomography</span></i>, and <span class="SpellE"><i>leastSquaresFit</i></span>)
+
+     </li>
+
+</ol>
+
+<p style="margin-left:.5in">[<b>TODO 2, 3</b>]
+<font face="courier">computeHomography</font> takes two feature sets from image 1
+and image 2, <font face="courier">f1</font> and <font face="courier">f2</font>
+and a list of feature matches <font face="courier">matches</font> and estimates a
+homography from image 1 to image 2.
+</p><p style="margin-top:5.0pt;margin-right:0in;margin-bottom:12.0pt;margin-left:
+.5in">
+(Note 3: In <font face="courier">computeHomography</font>, you will compute the
+best-fit homography using the Singular Value Decomposition. Let us denote transpose of A as A'.
+Recall from lecture that to minimize Ah = 0, subject to the constraint that h is unit length, the solution h is the eigenvector of A'A with the smallest eigenvalue. Another way of getting at the same solution is to compute the SVD of A and take the right singular vector corresponding to the smallest singular value. <i>In the underdetermined case, there are only 8 singular values, and the last row of V' is the exact (zero-residual) solution to the problem</i>. See the lecture notes and slides on alignment using Homographies for details.
+If you want to dig further into the math, the <a href="http://en.wikipedia.org/wiki/Singular_value_decomposition">wikipedia
+    article</a> on the SVD may be helpful.)
+</p>
+
+<p></p>
+
+<p style="margin-left:.5in">[<b>TODO 4</b>]
+<font face="courier">AlignPair</font> is where you will implement RANSAC.
+It takes two feature sets, <font face="courier">f1</font> and <font face="courier">f2</font>, the list of feature matches obtained from the
+feature detecting and matching component (described in the first part of the
+project),&nbsp; a <i>motion model</i>, <font face="courier">m</font> (described below) as parameters. Then it estimates and returns the inter-image transform matrix M. &nbsp;
+For this project, the <span class="SpellE">enum</span>
+<span class="SpellE"><i>MotionModel</i></span> may have two possible
+values: <font face="courier">eTranslate</font> and <font face="courier">eHomography</font>. <font face="courier">AlignPair</font> uses RANSAC
+(<span class="SpellE">RAndom</span> <span class="SpellE">SAmpling</span>
+Consensus) to estimate M. First, it randomly pulls out a minimal set of feature matches (one match for
+the case of translations, four for homographies), estimates the corresponding motion
+(alignment) and then invokes <font face="courier">getInliers</font> to get the
+indices of feature matches (indexing into <font face="courier">matches</font>) that agree with the current motion estimate.
+&nbsp;
+
+After repeated trials, the motion estimate with the largest number of inliers
+is used to compute a least squares estimate for the motion, which is then
+returned in the motion estimate <i>M.</i></p>
+
+<p style="margin-left:.5in">[<b>TODO 5</b>]
+<font face="courier">getInliers</font> computes the indices of the matches that
+have a Euclidean distance below <font face="courier">RANSACthresh</font> given
+features <font face="courier">f1</font> and <font face="courier">f2</font> from
+image 1 and image 2 and an inter-image transformation matrix from image 1 to image 2.
+&nbsp;
+<o:p></o:p></p>
+<u1:p></u1:p>
+
+<p style="margin-left:.5in">[<b>TODO 6, 7</b>]
+<font face="courier">LeastSquaresFit</font>
+computes a least squares estimate for the translation or homography using
+all of the matches previously estimated as inliers.&nbsp;
+It returns the resulting translation or homography output transform <i>M</i>.
+For translation estimation, I recommend simply averaging the translations
+rather than taking the heavy-handed linear algebra approach.
+</p>
+
+
+<ol start="3" type="1">
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+
+     mso-list:l0 level1 lfo8;tab-stops:list .5in">Stitch and crop the resulting
+
+     aligned images. (file: <span class="SpellE"><i>blend.py</i></span>,
+
+     routines: <span class="SpellE"><i>imageBoundingBox</i></span><i>, <span class="SpellE"><i>blendImages</i></span><i>, <span class="SpellE">accumulateBlend</span>, <span class="SpellE">normalizeBlend</span></i></i>)<br>
+
+     </li>
+
+</ol>
+
+
+     <p style="margin-left:.5in">[<b>TODO 8</b>] Given an image and a homography,
+
+     figure out the box bounding the image after applying the homography.(<span class="SpellE"><i>imageBoundingBox.</i></span>)</p>
+
+     <p style="margin-left:.5in">[<b>TODO 9</b>] Given the warped images and their relative displacements,
+
+     figure out how large the final stitched image will be and their absolute
+
+     displacements in the panorama.(<span class="SpellE"><i>blendImages.</i></span>)</p>
+
+
+
+<p style="margin-left:.5in">[<b>TODO 10</b>] Then, resample each image to its
+
+final location (you will need to use inverse warping here) and blend it with its neighbors.&nbsp;Try a simple feathering
+
+function as your weighting function (see mosaics lecture slide on
+
+"feathering") (this is a simple 1-D version of the distance map
+
+described in [<a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/szeliskiShum97.pdf"><span class="SpellE">Szeliski</span> &amp; Shum</a>]).&nbsp; For extra credit, you can
+
+try other blending functions or figure out some way to compensate for exposure
+
+differences. (<span class="SpellE"><i>accumulateBlend.</i></span>) </p>
+
+<p style="margin-left:.5in">
+[<b>Additional hints</b>] 1) When working with homogeneous coordinates, don't forget to
+normalize when converting them back to Cartesian coordinates. 2) Watch out for black pixels in the source image when inverse warping. You don't want to include them in the accumulation. 3) When doing inverse warping, use bilinear interpolation for the source image pixels. 4) First try to work out the code by looping over each pixel. Later you can optimize your code using array instructions and numpy tricks (numpy.meshgrid, cv2.remap). Optimizing this section is worth only a couple points, so prioritize this lowest.
+</p>
+
+
+<p style="margin-left:.5in">[<b>TODO 11</b>] Normalize the image with the accumulated weight channel. Pay attention not to divide by zero. Remember to
+
+set the alpha channel of the resulting panorama to opaque! (<span class="SpellE"><i>normalizeBlend.</i></span>) </p>
+
+<p style="margin-left:.5in">[<b>TODO 12</b>] <b>597P only</b> In case of 360 degree panoramas, make the
+
+left and right edges have perfect seams.
+
+The horizontal extent can be computed in the previous blending routine since
+
+the first image occurs at both the left and right end of the stitched sequence
+
+(draw the "cut" line halfway through this image).&nbsp; Use a linear warp to
+
+the mosaic to remove any vertical "drift" between the first and last
+
+image.&nbsp; This warp, of the form y' = y + ax, should transform the y
+
+coordinates of the mosaic such that the first image has the same y-coordinate
+
+on both the left and right end.&nbsp; Calculate the value of 'a' needed to
+
+perform this transformation. (<span class="SpellE"><i>blendImages</i></span>)</p>
+
+Summary of potentially useful functions (you do not have to use any of these):
+<font face="courier" size="2">
+<ul>
+	<li> np.eye, np.array, np.dot</li>
+</ul>
+</font>
+
+
+<h2><a name="usingthegui">Using the GUI</a></h2>
+
+You can run the skeleton program by running,
+
+  <div class="codefrag">
+    &gt;&gt; python gui.py
+  </div>
+
+
+<p>The skeleton code that we provide comes with a graphical interface, with the module <font face="courier" size="2">gui.py</font>, which makes it easy for you to do the following: </p>
+
+<ol>
+    <li><b>Visualize a Homography:</b> The first tab in the UI provides you a way to load an image and apply an arbitrary homography to the image. This can be useful while debugging when, for example, you want to visualize the results of both manually and programmatically generated transformation matrices.</li>
+    <li><b>Visualize Spherical Warping:</b> The second tab on the UI lets you spherically warp an image with a given focal length.</li>
+    <li><b>Align Images:</b> The third tab lets you select two images with overlap and uses RANSAC to compute a homography or translation (selectable) that maps the right image onto the left image.</li>
+	<li><b>Generating a Panorama:</b> The last tab in the UI lets you generate a panorama. To be able to create a panorama, you need to have a folder with images labelled in such an order that sorting them <font color="red"> alphabetically gives you the order the images appear on the panorama from left to right (or from right to left).</font> This ensures that the mappings between all neighboring pairs are computed. <font color="red">Our current code assumes that all images in the panorama have the same width!</font></li>
+
+</ol>
+
+
+
+<h2><a name="debugging">Debugging Guidelines</a></h2>
+
+
+
+<p>You can use the GUI visualizations to check whether
+
+your program is running correctly.
+
+</p>
+
+
+<ol start="1" type="1">
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt;
+
+     mso-list:l12 level1 lfo11;tab-stops:list .5in">Testing the warping
+
+     routines: </li>
+
+</ol>
+
+
+
+<ol start="1" type="1">
+
+ <ul type="circle">
+
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+
+      auto;mso-list:l12 level2 lfo11;tab-stops:list 1.0in">In the <font color="red">campus</font> test
+
+			set, the camera parameters used for these examples are
+			<ul>
+				<li> <font face="courier"> f = 595 </font> </li>
+				<li> <font face="courier"> k1 = -0.15 </font> </li>
+				<li> <font face="courier"> k2 = 0.00 </font> </li>
+			</ul>
+  </li>
+
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+
+      auto;mso-list:l12 level2 lfo11;tab-stops:list 1.0in">In the <font color="red">yosemite</font> test
+
+      set, a few example warped images are provided for
+
+      test purposes. The camera parameters used for these examples are
+      <ul>
+        <li> <font face="courier"> f = 678 </font> </li>
+        <li> <font face="courier"> k1 = -0.21 </font> </li>
+        <li> <font face="courier"> k2 = 0.26 </font> </li>
+      </ul>
+      See if your program produces the
+
+	  same output. Note that if you use these images with the translation
+	  motion model, you might get a bit blurry panoramas in the blending
+	  region (as you can also see from the panorama given by us).</li>
+
+ </ul>
+
+</ol>
+
+
+
+<ol start="2" type="1">
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt;
+
+     mso-list:l12 level1 lfo11;tab-stops:list .5in">Testing the alignment
+
+     routines: </li>
+
+</ol>
+
+
+
+<ol start="2" type="1">
+
+ <ul type="circle">
+
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+
+	auto;mso-list:l12 level2 lfo11;tab-stops:list 1.0in">Note that the campus images are only suitable for the translational motion model! The yosemite images are suitable for both motion models.
+To test <font face="courier">
+
+			alignPair</font>, load two images in the alignment tab of the GUI.
+
+			Clicking 'Align Images', displays a pair, the left and right images, with
+
+			the right image transformed according to the inter-image transformation
+
+			matrix and overlaid over the left image. This enables visually analyzing
+
+			the accuracy of the transformation matrix. Note that blending is not
+
+			performed at this stage.
+
+      </li>
+
+ </ul>
+
+</ol>
+
+
+
+<ol start="3" type="1">
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt;
+
+     mso-list:l12 level1 lfo11;tab-stops:list .5in">Testing the blending
+
+     routines: </li>
+
+</ol>
+
+
+
+<ol start="3" type="1">
+
+ <ul type="circle">
+
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+
+      auto;mso-list:l12 level2 lfo11;tab-stops:list 1.0in">When debugging your blending routines, you may find it helpful for the sake of efficiency to use the melbourne_small dataset, which is simply a downsampled version of the Melbourne dataset. Example panoramas
+
+      are included in the yosemite and the campus directories. Compare the resulting panorama with
+
+	  these images. Note that it's important to use the specified <font face="courier">f, k1, k2</font>
+	  parameters to get the same image. 597P students: use the 360 degree checkbox to ensure you get the same result for campus dataset.</li>
+
+ </ul>
+
+</ol>
+
+<ol start="4" type="1">
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt;
+
+	 mso-list:l12 level1 lfo11;tab-stops:list .5in">Additional notes: </li>
+
+</ol>
+
+<ol start="4" type="1">
+
+ <ul type="circle">
+
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+
+	  auto;mso-list:l12 level2 lfo11;tab-stops:list 1.0in">If you use high
+	  resolution images when creating you own panorama on a laptop, you might run into
+  memory problems. Try running on a machine with more memory; the lab machines have 16GB RAM which should be enough for panos captured by most consumer-oriented cameras. </li>
+
+ </ul>
+
+</ol>
+
+
+
+<h2><a name="pictures">Artifact</a></h2>
+
+<p><b>Each partner must submit their own artifact via Canvas:</b> Take a series
+of images with a digital camera mounted on a tripod or a
+handheld camera, and stitch a panorama using your code. This panorama can be
+either translation-aligned (360 or not, if you implemented 360 features), or
+aligned with homographies (your choice).&nbsp;For best results, overlap each
+image by 50% with the previous one, and keep the camera level. In order to use
+your camera for a spherically warped translation-aligned panorama, you have to
+estimate the focal length. &nbsp;The simplest way to do this is through the
+EXIF tags of the images, as described <a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/focal.html">here</a>. You may
+also be able to find the focal length (in mm) and sensor width by searching for
+your camera or phone model.  &nbsp;Alternatively, you can use a <a href="http://www.vision.caltech.edu/bouguetj/calib_doc/">camera calibration
+    toolkit</a> to get more precise focal length and radial distortion
+coefficients. </p>
+
+<h2><a name="turnin">Submission</a></h2>
+
+<p>
+
+<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: &#39;times new roman&#39;; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">
+
+<span class="Apple-style-span" style="font-family: &#39;Times New Roman&#39;; ">
+    </span></span></p><p><strong>Code</strong> Submit your code by committing and pushing your
+    changes to Github before the deadline. Be sure to include an estimate of
+    the hours you spent on the first line of hours.txt, and feel free to tell
+    me anything you'd like me to know about how the assignment went below that
+    line in hours.txt. If you did any extra credit, describe what you did in
+    readme.txt. </p>
+
+    <p><strong>Artifact</strong> If you are working in a pair, <b>each</b>
+    group member must submit their own artifact. Submit your panorama artifact
+    to <strong>Canvas</strong> in JPG format. </p>
+
+    <p><b>Survey</b>If you are working in a pair, <b>each</b> group member must
+    fill out the P2 Survey assignment on Canvas. If you worked on your own,
+    you're welcome, but not required, to fill out the survey to let me know how
+    it went.
+
+
+
+
+</p><h2><a name="EC">Extra Credit</a></h2>
+<p>Here is a list of suggestions for extending the program for extra credit.
+You are encouraged to come up with your own extensions. We're always interested
+in seeing new, unanticipated ways to use this program! <font color="red">Please
+use the --extra-credit flag in gui.py.  You will need to use the args parsed in
+the "main method" portion of gui.py and modify the rest of the code as necessary. 
+If we run your program without the flag, it must implement the base project.</font></p>
+
+<ul type="disc">
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo12;tab-stops:list .5in">497P Students: complete TODO 1 and TODO 12 to make the 360 panorama mode work.&nbsp;</li>
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+
+     mso-list:l4 level1 lfo12;tab-stops:list .5in">Sometimes, there exists
+
+     exposure difference between images, which results in brightness
+
+     fluctuation in the final mosaic. Try to get rid of this artifact.&nbsp;</li>
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+
+     mso-list:l4 level1 lfo12;tab-stops:list .5in">Try shooting a sequence with
+
+     some objects moving and appearing in more than one image. Come up with a
+     scheme to stitch a panorama without "ghosted" objects.
+
+     </li>
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+
+     mso-list:l4 level1 lfo12;tab-stops:list .5in">Try a sequence in which the
+
+     same person appears multiple times, as in the examples on <a href="https://ct101.us/2016/09/22/if-i-could-clone-mysefl-i-could-get-so-much-more-done/">this page</a>. </li>
+
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+
+     mso-list:l4 level1 lfo12;tab-stops:list .5in">Implement a better blending
+
+     technique, e.g., 
+     <a href="http://www.cs.princeton.edu/courses/archive/fall05/cos429/papers/burt_adelson.pdf">pyramid blending</a> (you might be able to reuse some P1 code for this one), 
+     <a href="http://www.cs.jhu.edu/~misha/Fall07/Papers/Perez03.pdf"><span class="SpellE">poisson</span> image blending</a>
+ and <a href="http://www.cc.gatech.edu/cpl/projects/graphcuttextures/">graph cuts</a>.</li>
+
+</ul>
+
+<p><strong>If you complete any extra credit, include a description of what you did and any design decisions made in a your repository's readme.txt file.</strong></p>
+
+<h2><a name="panoramalinks">Panorama Links </a></h2>
+<ul>
+ <li> <a href="http://www.panoramas.dk/">Panoramas.dk</a>: weekly archive of full-screen, high-quality panoramas worldwide </li>
+ <li> Super high resolution panoramas at <a href="http://gigapan.com/">GigaPan</a></li>
+ <li>Matt Brown's Autostitch <a href="http://matthewalunbrown.com/autostitch/autostitch.html">page</a>.</li>
+</ul>
+
+<h2>Rubric<a name="rubric"></a></h2><a name="rubric">
+
+Your project will be graded based on the quality of the panoramas generated. An
+approximate point breakdown is given below. Keep in mind that later code
+depends on earlier code, so partial credit may be hard to assign if something
+early on is broken. If you're short on time, optimize for having working code
+for image alignment with homographies.
+
+<p><strong>Correctness:</strong>
+</p><ul>
+    <li>(10) computeHomography</li>
+    <li>(15) alignPair, getInliers, leastSquaresFit</li>
+    <li>(5) imageBoundingBox</li>
+    <li>(10) blendImages and normalizeBlend</li>
+</ul><p></p>
+
+<p>597P only:
+</p><ul>
+    <li> (5) Spherical warping</li>
+    <li> (5) Drift correction</li>
+</ul> <p></p>
+
+<p><strong>Efficiency:</strong>
+</p><ul>
+    <li>(8) each step except accumulateBlend runs in a few seconds or less </li>
+    <li>(2) accumulateBlend runs in a few seconds or less</li>
+</ul><p></p>
+
+<p><strong>Clarity:</strong> 
+
+Deductions for poor coding style may be made. Please see the syllabus
+for general coding guidelines. Up to two points may be deducted for each
+of the following:
+</p><ul>
+    <li>Methods should be written as concisely and clearly as possible</li>
+    <li>Methods should not be too long - use helper methods to break code into sensible subroutines</li>
+    <li>Code should not be cryptic and terse - explain nontrivial blocks with comments</li>
+    <li>Methods you introduce should be accompanied by a precise specification</li>
+    <li>Variable and function names should be informative but not overly verbose</li>
+</ul>
+<p></p>
+
+<p><strong>Submission Mechanics</strong>
+Up to 10 points may be deducted for problems with submission mechanics that
+require manual handling: for example, problems with your git repository, code
+that exhibits runtime errors when used via the GUI, failure to notify me of late
+submission, etc.
+</p>
+
+<h2>Acknowledgments</h2>
+Many thanks are due to those who developed and refined prior versions of this
+assignment, including </a><a href="http://www.cs.washington.edu/homes/seitz/">Steve
+Seitz</a>, <a href="http://www.cs.cornell.edu/~kb/">Kavita Bala</a>, <a href="http://www.cs.cornell.edu/~snavely">Noah Snavely</a>, and many
+underappreciated TAs.
+
+<hr>
+
+</div>
+</div>
+</body></html>

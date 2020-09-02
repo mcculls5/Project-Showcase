@@ -12,4 +12,6 @@ The purpose of this list is to document my experience rather than to host workin
   - Hybrid Images
   - Laplacian Detail Enhancement
   - Panorama Stitching
+- Operating System Internals
+  - Virtual Kernel
   

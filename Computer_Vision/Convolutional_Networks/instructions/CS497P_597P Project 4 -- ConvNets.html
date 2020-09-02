@@ -1,0 +1,359 @@
+
+<!-- saved from url=(0063)https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p4/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>CS497P/597P Project 4 -- ConvNets</title>
+    <style type="text/css">
+        @font-face {
+			font-family:PMingLiU;
+			panose-1:2 2 3 0 0 0 0 0 0 0;
+			mso-font-alt:\65B0\7D30\660E\9AD4;
+			mso-font-charset:136;
+			mso-generic-font-family:roman;
+			mso-font-pitch:variable;
+			mso-font-signature:3 137232384 22 0 1048577 0;
+        }
+        @font-face {
+			font-family:"\@PMingLiU";
+			panose-1:2 2 3 0 0 0 0 0 0 0;
+			mso-font-charset:136;
+			mso-generic-font-family:roman;
+			mso-font-pitch:variable;
+			mso-font-signature:3 137232384 22 0 1048577 0;
+        }
+        .page-frame {
+			margin-left:auto;
+			margin-right:auto;
+			margin-top:0px;
+			margin-bottom:0px;
+			width:850px;
+        }
+        .project-title {
+        }
+        .class-title {
+			font-size:70%;
+			color:rgb(155,0,0);
+        }
+        .codefrag, .code {
+			font-family: Courier, monospace;
+			text-align:left;
+        }
+        .codefrag {
+			font-size:80%;
+			margin-bottom:1em;
+			margin-top:1em;
+			background-color:#CCDEF0;
+			border:1px solid #A7C0CC;
+			padding: 5px;
+        }
+        .nav-bar {
+			font-family: Arial, helvetica, sans-serif;
+			border-top-color: #036;
+			border-bottom:1px solid #003366;
+			margin-left:auto;
+			margin-right:auto;
+			margin-bottom:10px;
+			align:center;
+			font-size:12pt;
+        }
+        .nav-elem {
+			font-variant:small-caps;
+			margin-left:10px;
+			margin-right:10px;
+			margin-top:10px;
+			margin-bottom:10px;
+        }
+        .nav-elem a:link    {
+			text-decoration: none;
+			color: #000;
+        }
+        .nav-elem a:visited {
+			text-decoration: none;
+			color: #000;
+        }
+        .nav-elem a:active  {
+			text-decoration: none;
+			color: #000;
+        }
+        .nav-elem a:hover   {
+			text-decoration: underline;
+			color: #39F;
+        }
+        div.Section1 {
+			page:Section1;
+        }
+        h1 {
+			text-align:center;
+			font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+        }
+        h2 {
+			margin-right:0in;
+			margin-left:0in;
+			font-size:18.0pt;
+			font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+			font-weight:bold;
+        }
+        h4 {
+			font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+        }
+        p {
+			margin-right:0in;
+			margin-left:0in;
+			font-size:12.0pt;
+			font-family:"Times New Roman";
+        }
+        a:link {
+			color:blue;
+			text-decoration:underline;
+			text-underline:single;
+        }
+        h3 {
+			margin-right:0in;
+			margin-left:0in;
+			font-size:13.5pt;
+			font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+			font-weight:bold;
+        }
+        ul {
+			margin-bottom:0in;
+        }
+    </style>
+</head>
+<body style="tab-interval: .5in" vlink="blue" link="blue" lang="EN-US">
+    <div class="page-frame">
+        <center>
+            <div class="nav-bar">
+                <span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p4/#synopsis">Synopsis</a></span>
+                <span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p4/#colab">Colab</a></span>
+                <span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p4/#todo">TODO</a></span>
+                <span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p4/#setup">Setup</a></span>
+                <span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p4/#handin">What to hand in</a></span>
+                <span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p4/#mnist">MNIST Challenge</a></span>
+                <span class="nav-elem"><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p4/#expected">Expected result</a></span>
+            </div>
+        </center>
+        <div class="Section1">
+            <div style="z-index:1">
+                <h1>
+                    <span class="class-title">CS 497P / 597P: Computer Vision, Spring 2020</span><br>
+                    <span class="project-title">Project 4: ConvNets</span>
+                </h1>
+                <h2>Brief</h2>
+                <ul>
+                    <li>Assigned:&nbsp;Wednesday, May 27, 2020</li>
+                    <li><b>Due:&nbsp; Wednesday, June 3, 2020 (9:59pm)</b> (submit via Canvas)</li>
+                    <li><b>Teams:</b> This assignment may be done individually or in teams of 2.</li>
+                </ul>
+                <p></p>
+            </div>
+        </div>
+
+		<a name="synopsis"></a>
+		<h2>Synopsis</h2>
+		<p>In this project, we will be visualizing and manipulating AlexNet [1]:</p>
+		<p><img src="./CS497P_597P Project 4 -- ConvNets_files/alexnet.png" style="width:100%"></p>
+
+		<p>For this project, we are using <a href="http://pytorch.org/">PyTorch</a>, an open-source deep learning library that allows an efficient implementation of CNNs.  Other similar libraries include <a href="http://torch.ch/">Torch</a>, <a href="http://deeplearning.net/software/theano/">Theano</a>, <a href="http://caffe.berkeleyvision.org/">Caffe</a>, and <a href="https://www.tensorflow.org/">TensorFlow</a>.</p>
+
+		<p>Some parts of this assignment were adapted/inspired from a <a href="http://cs231n.stanford.edu/">Stanford cs231n</a> assignment. The parts that are similar have been modified heavily and ported to PyTorch. Thanks are due to the assignment's original creators from Stanford, as well as Noah Snavely, Kavita Bala, and various TAs who have further developed and refined this assignment.</p>
+
+		<p>The assignment is contained in an IPython Notebook; see below.</p>
+
+		<p>[1] <a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">Krizhevsky et al, "ImageNet Classification with Deep Convolutional Neural Networks", NIPS 2012</a></p>
+
+		<!-- <A name="written"></A> -->
+		<!-- <H2>Written part</H2> -->
+		<!-- <p>There is a written part to be <b>separately completed by each person</b>.  All submissions should be PDF and include your name/netid.</p> -->
+		<!-- <p>Download the written part <a href="backprop.pdf">here</a>.</p> -->
+		<a name="colab"></a>
+		<h2>Colab</h2>
+		<p><a href="https://colab.research.google.com/"> Google Colab</a> or 
+Colaboratory is a useful tool for machine learning, that runs entirely 
+on cloud and thus is easy to setup. It is very similar to the Jupyter 
+notebook environment. The notebooks are stored on users Google Drive and
+ just like docs/sheets/files on drive, it can be shared among users for 
+collaboration(you'll need to share your notebooks if you'll be doing 
+this in a team of 2).</p>
+
+		<a name="setup"></a>
+		<h2>Setup</h2>
+		<ol>
+            <li>You can find the Colab notebooks for this assignment in <a href="https://drive.google.com/drive/folders/1dvf1t6HV_FmICJLR8WyYn5O0JfQHjXCS?usp=sharing">this Google Drive folder</a>.</li>
+            <li>There will be two Colab notebooks, <tt>Main</tt> and <tt>MNIST Challenge</tt>. The MNIST challenge notebook is for 597P students or those undergrads looking to complete extra credit.
+            </li><li>For each notebook you intend to work on, create a copy in your own Google Drive by right-clicking on the notebook file and selecting "Make a Copy". </li>
+            <li>If you're working with a partner: 
+                <ul>
+                    <li>Share the notebook with your partner using Google Drive's sharing settings.</li>
+                    <li>Choose and join a group on Canvas from the P4 Groups.</li>
+                </ul>
+			</li><li>Double clicking on the notebook in Google Drive should give you an option to open it in Colab.</li>
+            <li>Alternatively, you can download the notebook and upload it directly to <a href="https://colab.research.google.com/">Colab</a>:
+			<div class="codefrag">File -&gt; Upload notebook...</div>
+			</li>
+			<li>
+				If you haven't used Colab or Jupyter Notebooks before, first read the <a href="https://colab.research.google.com/notebooks/welcome.ipynb">Colaboratory welcome guide</a>. In particular, it's useful to know about features in the Runtime menu like "Run all", "Run before", and so on, to save you time on executing various notebook cells.
+			</li>
+			<li>
+                You will find the rest of the instructions in the notebook. Colab requires almost no setup, so there is no
+                need to install PyTorch locally.
+			</li>
+		</ol>
+
+		<a name="todo"></a>
+		<h2>TODO</h2>
+		<p>There are several tasks in this assignment, but each piece is just a few lines of code. <b> you should expect to write less than 10 lines of code for each TODO </b>.</p>
+		<ol>
+			<li>Visualize AlexNet structure (TODO 1).</li>
+			<li>Classify Dogs vs Food (TODO 2, 3).</li>
+			<li>Visualize class saliency (TODO 4).</li>
+			<li>Fool AlexNet into making wrong predictions (TODO 5).</li>
+			<li>Visualize a learned class (TODO 6)</li>
+			<li><b>(<font size="3" color="red">597P Only</font>)</b> Implement neural net to train on MNIST dataset.</li> 
+		</ol>
+
+		<p><b>Tests</b>: to verify the correctness of your solutions, you can run tests at very end of the notebook</p>
+		<p>Detailed instructions for each task are given in the notebooks.</p>
+
+		<a name="mnist"></a>
+		<h2>MNIST Challenge</h2>
+		<img src="./CS497P_597P Project 4 -- ConvNets_files/mnist.jpg" style="max-width:100%">
+		<p>597P students must design and train their own neural 
+network to classify handrwitten digits in the MNIST dataset. You will be given
+an example network and your aim should be to improve the accuracy while being
+under the specified parameter limit. Look at the MNIST notebook for skeleton
+code and more instructions.</p> 
+
+
+		<a name="handin"></a>
+		<h2>Submission</h2>
+		<ol>
+			<!-- <li>Submit the written portion separately as a PDF.</li> -->
+			<li>Execute all cells in your completed notebook file and download it as ipynb:
+			<div class="codefrag">File -&gt; Download .ipynb</div>
+			</li>
+			<li>Upload the completed notebook to Canvas</li>
+			<li>If you are doing the MNIST Challenge submit that notebook as well.</li>
+		</ol>
+
+        <a name="rubric">
+        <h2>Rubric</h2>
+        Each correctly implemented TODO is worth 5 points, for a total of 30
+        points for 497P and 35 points for 597P. Correctness will be checked
+        using the tests at the bottom of the notebook.
+
+		</a><a name="expected"></a>
+		<h2>What should my images look like?</h2>
+		<p>This section contains images to illustrate what kinds of qualitative
+		results we expect.</p>
+
+		<p><b>Saliency</b>: we expect that pixels related to the class have a
+		higher value.  Left: Input image.  Right: saliency.</p>
+		<img src="./CS497P_597P Project 4 -- ConvNets_files/saliency.jpg" style="max-width:100%">
+
+		<p><b>Fooling image</b></p>
+		These images look nearly identical, and yet AlexNet will classify each
+		image on the middle as "snail".  If you look really closely you can
+		notice some tiny visual differences.  The right image shows the
+		difference magnified by 5x (with 0 re-centered at gray).
+		<p><img src="./CS497P_597P Project 4 -- ConvNets_files/fooling.png" style="max-width:100%"></p>
+
+		<p><b>Class visualization</b></p>
+		<p>These images are classified as 100% belonging to different classes by AlexNet.
+		If you run these for longer or adjust the hyperparameters, you may see
+		a more salient result.</p>
+		<p>Many classes don't give very good results; here we show some of the
+		better classes.</p>
+		<table>
+			<tbody><tr>
+				<td>strawberry</td>
+				<td>throne</td>
+				<td>mushroom</td>
+			</tr>
+			<tr>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="949-strawberry.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="857-throne.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="947-mushroom.mp4" type="video/mp4"></video></td>
+			</tr>
+			<tr>
+				<td>tarantula</td>
+				<td>flamingo</td>
+				<td>king penguin</td>
+			</tr>
+			<tr>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="tarantula.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="flamingo.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="penguin.mp4" type="video/mp4"></video></td>
+			</tr>
+			<tr>
+				<td>goblet</td>
+				<td>sax</td>
+				<td>llama</td>
+			</tr>
+			<tr>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="572-goblet.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="776-sax.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="355-llama.mp4" type="video/mp4"></video></td>
+			</tr>
+			<tr>
+				<td>cloak</td>
+				<td>moped</td>
+				<td>indigo bunting</td>
+			</tr>
+			<tr>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="501-cloak.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="665-moped.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="014-indigo-bunting.mp4" type="video/mp4"></video></td>
+			</tr>
+			<tr>
+				<td>bulbul</td>
+				<td>squirrel monkey</td>
+				<td>cock</td>
+			</tr>
+			<tr>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="016-bulbul.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="382-squirrel-monkey.mp4" type="video/mp4"></video></td>
+				<td><video autoplay="autoplay" loop="" width="227" height="227"><source src="007-cock.mp4" type="video/mp4"></video></td>
+			</tr>
+		</tbody></table>
+
+		<!--<p><b>Feature inversion Extra Credits; Optional)</b></p>
+		<p>Note that we could probably obtain higher quality reconstructions if
+		we ran the optimization for longer, or added a better regularizer.
+		To keep things simple, your images only need to be mostly converged.</p>
+
+		<table>
+			<tr>
+				<td>original</td>
+				<td>conv1</td>
+				<td>conv2</td>
+			</tr>
+			<tr>
+				<td><img src="invert-orig.jpg" style="width:227px; height=227px"/></td>
+				<td><video width="227" height="227" autoplay loop><source src="invert-conv1.mp4" type="video/mp4" /></video></td>
+				<td><video width="227" height="227" autoplay loop><source src="invert-conv2.mp4" type="video/mp4" /></video></td>
+			</tr>
+			<tr>
+				<td>conv3</td>
+				<td>conv4</td>
+				<td>conv5</td>
+			</tr>
+			<tr>
+				<td><video width="227" height="227" autoplay loop><source src="invert-conv3.mp4" type="video/mp4" /></video></td>
+				<td><video width="227" height="227" autoplay loop><source src="invert-conv4.mp4" type="video/mp4" /></video></td>
+				<td><video width="227" height="227" autoplay loop><source src="invert-conv5.mp4" type="video/mp4" /></video></td>
+			</tr>
+			<tr>
+				<td>fc6</td>
+				<td>fc7</td>
+				<td>fc8</td>
+			</tr>
+			<tr>
+				<td><video width="227" height="227" autoplay loop><source src="invert-fc6.mp4" type="video/mp4" /></video></td>
+				<td><video width="227" height="227" autoplay loop><source src="invert-fc7.mp4" type="video/mp4" /></video></td>
+				<td><video width="227" height="227" autoplay loop><source src="invert-fc8.mp4" type="video/mp4" /></video></td>
+			</tr>
+		</table> -->
+
+
+
+</div></body></html>

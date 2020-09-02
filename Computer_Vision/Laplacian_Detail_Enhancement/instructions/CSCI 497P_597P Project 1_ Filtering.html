@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Scott Wehrwein">
+  <title>CSCI 497P/597P Project 1: Filtering</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="./CSCI 497P_597P Project 1_ Filtering_files/md.css">
+  <script src="./CSCI 497P_597P Project 1_ Filtering_files/MathJax.js.download" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.mjx-chtml {display: inline-block; line-height: 0; text-indent: 0; text-align: left; text-transform: none; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; letter-spacing: normal; word-wrap: normal; word-spacing: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; margin: 0; padding: 1px 0}
+.MJXc-display {display: block; text-align: center; margin: 1em 0; padding: 0}
+.mjx-chtml[tabindex]:focus, body :focus .mjx-chtml[tabindex] {display: inline-table}
+.mjx-full-width {text-align: center; display: table-cell!important; width: 10000em}
+.mjx-math {display: inline-block; border-collapse: separate; border-spacing: 0}
+.mjx-math * {display: inline-block; -webkit-box-sizing: content-box!important; -moz-box-sizing: content-box!important; box-sizing: content-box!important; text-align: left}
+.mjx-numerator {display: block; text-align: center}
+.mjx-denominator {display: block; text-align: center}
+.MJXc-stacked {height: 0; position: relative}
+.MJXc-stacked > * {position: absolute}
+.MJXc-bevelled > * {display: inline-block}
+.mjx-stack {display: inline-block}
+.mjx-op {display: block}
+.mjx-under {display: table-cell}
+.mjx-over {display: block}
+.mjx-over > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-under > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-stack > .mjx-sup {display: block}
+.mjx-stack > .mjx-sub {display: block}
+.mjx-prestack > .mjx-presup {display: block}
+.mjx-prestack > .mjx-presub {display: block}
+.mjx-delim-h > .mjx-char {display: inline-block}
+.mjx-surd {vertical-align: top}
+.mjx-mphantom * {visibility: hidden}
+.mjx-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 2px 3px; font-style: normal; font-size: 90%}
+.mjx-annotation-xml {line-height: normal}
+.mjx-menclose > svg {fill: none; stroke: currentColor}
+.mjx-mtr {display: table-row}
+.mjx-mlabeledtr {display: table-row}
+.mjx-mtd {display: table-cell; text-align: center}
+.mjx-label {display: table-row}
+.mjx-box {display: inline-block}
+.mjx-block {display: block}
+.mjx-span {display: inline}
+.mjx-char {display: block; white-space: pre}
+.mjx-itable {display: inline-table; width: auto}
+.mjx-row {display: table-row}
+.mjx-cell {display: table-cell}
+.mjx-table {display: table; width: 100%}
+.mjx-line {display: block; height: 0}
+.mjx-strut {width: 0; padding-top: 1em}
+.mjx-vsize {width: 0}
+.MJXc-space1 {margin-left: .167em}
+.MJXc-space2 {margin-left: .222em}
+.MJXc-space3 {margin-left: .278em}
+.mjx-chartest {display: block; visibility: hidden; position: absolute; top: 0; line-height: normal; font-size: 500%}
+.mjx-chartest .mjx-char {display: inline}
+.mjx-chartest .mjx-box {padding-top: 1000px}
+.MJXc-processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MJXc-processed {display: none}
+.mjx-test {display: block; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.mjx-ex-box-test {position: absolute; overflow: hidden; width: 1px; height: 60ex}
+.mjx-line-box-test {display: table!important}
+.mjx-line-box-test span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+#MathJax_CHTML_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.mjx-chtml .mjx-noError {line-height: 1.2; vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+.MJXc-TeX-unknown-R {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: normal}
+.MJXc-TeX-unknown-I {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: normal}
+.MJXc-TeX-unknown-B {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: bold}
+.MJXc-TeX-unknown-BI {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: bold}
+.MJXc-TeX-ams-R {font-family: MJXc-TeX-ams-R,MJXc-TeX-ams-Rw}
+.MJXc-TeX-cal-B {font-family: MJXc-TeX-cal-B,MJXc-TeX-cal-Bx,MJXc-TeX-cal-Bw}
+.MJXc-TeX-frak-R {font-family: MJXc-TeX-frak-R,MJXc-TeX-frak-Rw}
+.MJXc-TeX-frak-B {font-family: MJXc-TeX-frak-B,MJXc-TeX-frak-Bx,MJXc-TeX-frak-Bw}
+.MJXc-TeX-math-BI {font-family: MJXc-TeX-math-BI,MJXc-TeX-math-BIx,MJXc-TeX-math-BIw}
+.MJXc-TeX-sans-R {font-family: MJXc-TeX-sans-R,MJXc-TeX-sans-Rw}
+.MJXc-TeX-sans-B {font-family: MJXc-TeX-sans-B,MJXc-TeX-sans-Bx,MJXc-TeX-sans-Bw}
+.MJXc-TeX-sans-I {font-family: MJXc-TeX-sans-I,MJXc-TeX-sans-Ix,MJXc-TeX-sans-Iw}
+.MJXc-TeX-script-R {font-family: MJXc-TeX-script-R,MJXc-TeX-script-Rw}
+.MJXc-TeX-type-R {font-family: MJXc-TeX-type-R,MJXc-TeX-type-Rw}
+.MJXc-TeX-cal-R {font-family: MJXc-TeX-cal-R,MJXc-TeX-cal-Rw}
+.MJXc-TeX-main-B {font-family: MJXc-TeX-main-B,MJXc-TeX-main-Bx,MJXc-TeX-main-Bw}
+.MJXc-TeX-main-I {font-family: MJXc-TeX-main-I,MJXc-TeX-main-Ix,MJXc-TeX-main-Iw}
+.MJXc-TeX-main-R {font-family: MJXc-TeX-main-R,MJXc-TeX-main-Rw}
+.MJXc-TeX-math-I {font-family: MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw}
+.MJXc-TeX-size1-R {font-family: MJXc-TeX-size1-R,MJXc-TeX-size1-Rw}
+.MJXc-TeX-size2-R {font-family: MJXc-TeX-size2-R,MJXc-TeX-size2-Rw}
+.MJXc-TeX-size3-R {font-family: MJXc-TeX-size3-R,MJXc-TeX-size3-Rw}
+.MJXc-TeX-size4-R {font-family: MJXc-TeX-size4-R,MJXc-TeX-size4-Rw}
+.MJXc-TeX-vec-R {font-family: MJXc-TeX-vec-R,MJXc-TeX-vec-Rw}
+.MJXc-TeX-vec-B {font-family: MJXc-TeX-vec-B,MJXc-TeX-vec-Bx,MJXc-TeX-vec-Bw}
+@font-face {font-family: MJXc-TeX-ams-R; src: local('MathJax_AMS'), local('MathJax_AMS-Regular')}
+@font-face {font-family: MJXc-TeX-ams-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_AMS-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_AMS-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_AMS-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-B; src: local('MathJax_Caligraphic Bold'), local('MathJax_Caligraphic-Bold')}
+@font-face {font-family: MJXc-TeX-cal-Bx; src: local('MathJax_Caligraphic'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-cal-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-R; src: local('MathJax_Fraktur'), local('MathJax_Fraktur-Regular')}
+@font-face {font-family: MJXc-TeX-frak-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-B; src: local('MathJax_Fraktur Bold'), local('MathJax_Fraktur-Bold')}
+@font-face {font-family: MJXc-TeX-frak-Bx; src: local('MathJax_Fraktur'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-frak-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-BI; src: local('MathJax_Math BoldItalic'), local('MathJax_Math-BoldItalic')}
+@font-face {font-family: MJXc-TeX-math-BIx; src: local('MathJax_Math'); font-weight: bold; font-style: italic}
+@font-face {font-family: MJXc-TeX-math-BIw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Math-BoldItalic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Math-BoldItalic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Math-BoldItalic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-R; src: local('MathJax_SansSerif'), local('MathJax_SansSerif-Regular')}
+@font-face {font-family: MJXc-TeX-sans-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-B; src: local('MathJax_SansSerif Bold'), local('MathJax_SansSerif-Bold')}
+@font-face {font-family: MJXc-TeX-sans-Bx; src: local('MathJax_SansSerif'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-sans-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-I; src: local('MathJax_SansSerif Italic'), local('MathJax_SansSerif-Italic')}
+@font-face {font-family: MJXc-TeX-sans-Ix; src: local('MathJax_SansSerif'); font-style: italic}
+@font-face {font-family: MJXc-TeX-sans-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-script-R; src: local('MathJax_Script'), local('MathJax_Script-Regular')}
+@font-face {font-family: MJXc-TeX-script-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Script-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Script-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Script-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-type-R; src: local('MathJax_Typewriter'), local('MathJax_Typewriter-Regular')}
+@font-face {font-family: MJXc-TeX-type-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Typewriter-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Typewriter-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Typewriter-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-R; src: local('MathJax_Caligraphic'), local('MathJax_Caligraphic-Regular')}
+@font-face {font-family: MJXc-TeX-cal-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-B; src: local('MathJax_Main Bold'), local('MathJax_Main-Bold')}
+@font-face {font-family: MJXc-TeX-main-Bx; src: local('MathJax_Main'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-main-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Main-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-I; src: local('MathJax_Main Italic'), local('MathJax_Main-Italic')}
+@font-face {font-family: MJXc-TeX-main-Ix; src: local('MathJax_Main'); font-style: italic}
+@font-face {font-family: MJXc-TeX-main-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Main-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-R; src: local('MathJax_Main'), local('MathJax_Main-Regular')}
+@font-face {font-family: MJXc-TeX-main-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Main-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-I; src: local('MathJax_Math Italic'), local('MathJax_Math-Italic')}
+@font-face {font-family: MJXc-TeX-math-Ix; src: local('MathJax_Math'); font-style: italic}
+@font-face {font-family: MJXc-TeX-math-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Math-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size1-R; src: local('MathJax_Size1'), local('MathJax_Size1-Regular')}
+@font-face {font-family: MJXc-TeX-size1-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Size1-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size2-R; src: local('MathJax_Size2'), local('MathJax_Size2-Regular')}
+@font-face {font-family: MJXc-TeX-size2-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Size2-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size3-R; src: local('MathJax_Size3'), local('MathJax_Size3-Regular')}
+@font-face {font-family: MJXc-TeX-size3-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Size3-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size4-R; src: local('MathJax_Size4'), local('MathJax_Size4-Regular')}
+@font-face {font-family: MJXc-TeX-size4-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Size4-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-vec-R; src: local('MathJax_Vector'), local('MathJax_Vector-Regular')}
+@font-face {font-family: MJXc-TeX-vec-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Vector-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Vector-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-vec-B; src: local('MathJax_Vector Bold'), local('MathJax_Vector-Bold')}
+@font-face {font-family: MJXc-TeX-vec-Bx; src: local('MathJax_Vector'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-vec-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Vector-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Vector-Bold.otf') format('opentype')}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<header id="title-block-header">
+<h1 class="title">CSCI 497P/597P Project 1: Filtering</h1>
+<p class="author">Scott Wehrwein</p>
+<p class="date">Spring 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/#overview">Overview</a></li>
+<li><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/#setup">Setup</a></li>
+<li><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/#part-1-filtering-functions">Part 1: Filtering Functions</a></li>
+<li><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/#part-2-laplacian-detail-enhancement">Part 2: Laplacian Detail Enhancement</a></li>
+<li><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/#artifacts">Artifacts</a></li>
+<li><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/#submission">Submission</a></li>
+<li><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/#rubric">Rubric</a></li>
+<li><a href="https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/#acknowledgements">Acknowledgements</a></li>
+</ul>
+</nav>
+<p><img src="./CSCI 497P_597P Project 1_ Filtering_files/hybrid_image.jpg"></p>
+<p>Look at the image from very close and then very far. What do you see?</p>
+<p><strong>Assigned</strong>: Friday, April 17th, 2020</p>
+<p><strong>Code Deadline</strong>: Friday, May 1st, 2020 at 10pm</p>
+<p><strong>Artifact Deadline:</strong> Saturday, May 2nd, 2020 at 10pm</p>
+<h2 id="overview">Overview</h2>
+<p>This assignment explores two applications of image filtering using convolution.</p>
+<p>The first application is to create <strong>hybrid images</strong> like the one shown above using a simplified version of <a href="http://olivalab.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf">this SIGGRAPH paper</a> by Oliva, Torralba, and Shyns from 2006. The basic idea is that high frequency tends to dominate perception when it is available, but, at a distance, only the low frequency (smooth) part of the signal can be seen. By blending the high frequency portion of one image with the low-frequency portion of another, you get a hybrid image that leads to different interpretations at different distances. You will implement filtering routines in numpy, then use them to create your own hybrid images.</p>
+<p>The second application is <strong>detail enhancement</strong> using a Laplacian pyramid. Making use of the same filtering routines from the first part, you’ll write code to build a laplacian pyramid for an image, then reconstruct the image with each layer scaled up or down to allow you to accentuate or attenuate different frequency content in the image.</p>
+<h2 id="setup">Setup</h2>
+<h5 id="skeleton-code">Skeleton Code</h5>
+<p>In the Project 1 assignment on Canvas, you will find a GitHub Classroom invitation link. Click this link to accept the Project 1 assignment invitation and create your personal repository for this project. Your repository already contains skeleton code, including a user interface for creating hybrid images (<code>hybrid_gui.py</code>) and a UI for Laplacian detail enhancement (<code>laplacian_gui.py</code>). You will complete several functions in <code>filtering.py</code> that implement the functionality used by the UI programs. The next section walks you through each function. Please keep track of the approximate number of hours you spend on this assignment, as you will be asked to report this in <code>hours.txt</code> when you submit.</p>
+<h5 id="software">Software</h5>
+<p>The CS lab computers have all the necessary dependencies installed for you to run this project. If you wish to work on it on your own computer, it is up to you to install the following dependencies. This list is probably overcomplete; I don’t think it’s incomplete, but please send me email if I’ve missed something. The parenthesized versions are what is currently installed in the lab; other versions may well suffice, but it’s recommended that you stick with the same, or at least newer, major version numbers (i.e., Python &gt;=3.6, OpenCV &gt;=3.2.0) to minimize compatibility problems.</p>
+<ul>
+<li>Python (3.6.9)</li>
+<li>OpenCV (3.2.0), including Python 3 bindings</li>
+<li>pillow (5.1.0)</li>
+<li>numpy (1.13.3)</li>
+<li>scipy (0.19.1)</li>
+<li>matplotlib (2.1.1)</li>
+</ul>
+<h6 id="remote-access-issues-for-spring-2020">Remote access issues for Spring 2020</h6>
+<p>General help with accessing the lab systems remotely can be found here: <a href="https://gitlab.cs.wwu.edu/cs-support/public/-/wikis/Remotely_Accessing_Resources">https://gitlab.cs.wwu.edu/cs-support/public/-/wikis/Remotely_Accessing_Resources</a>.</p>
+<p>To run the UI remotely, you’ll need to set up X forwarding. Some instructions on this can be found here: <a href="https://gitlab.cs.wwu.edu/cs-support/public/-/wikis/SSH">https://gitlab.cs.wwu.edu/cs-support/public/-/wikis/SSH</a>. If you’re coming from a non-unixy platform, you likely won’t have an X server installed, so you’ll need to install XQuartz if you’re on a Mac, or VcXsrv if you’re on windows.</p>
+<h5 id="forbidden-functions">Forbidden Functions</h5>
+<p>For just this assignment, you are forbidden from using any built-in functions from Numpy, Scipy, OpenCV, or other libraries that pertain to <strong>filtering</strong> and <strong>resizing</strong>. This limitation will be lifted in future assignments, but for now, you should use <code>for</code> loops, vectorized numpy operations and indexing. Basic math operations like <code>np.sum</code> are fine. If you’re not sure whether something is permitted, just ask.</p>
+<h2 id="part-1-filtering-functions">Part 1: Filtering Functions</h2>
+<p>Your first step is to implement the basic filtering routines to perform 2D discrete cross-correlation and convolution. You will implement the following five functions:</p>
+<h5 id="cross_correlation_2d">1. <code>cross_correlation_2d</code></h5>
+<p>This will be the workhorse for much of the remaining functionality. Take a look back at the lecture slides if you need a reminder of the definition of cross-correlation; some basic pseudocode was also provided. In this implementation, we’re using the “same” output size and zero padding to fill in values outside the input image.</p>
+<h6 id="efficiency">Efficiency</h6>
+<p>The <code>cross_correlation_2d</code> function is computationally intensive: filtering an image of size M x N with a kernel of size K x K is an <span class="math inline"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-1-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;K&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 117%; position: relative;"><span id="MJXc-Node-1" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-2" class="mjx-mrow"><span id="MJXc-Node-3" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">O</span></span><span id="MJXc-Node-4" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">(</span></span><span id="MJXc-Node-5" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em; padding-right: 0.081em;">M</span></span><span id="MJXc-Node-6" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em; padding-right: 0.085em;">N</span></span><span id="MJXc-Node-7" class="mjx-msubsup"><span class="mjx-base" style="margin-right: -0.04em;"><span id="MJXc-Node-8" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em; padding-right: 0.04em;">K</span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.513em; padding-left: 0.144em; padding-right: 0.071em;"><span id="MJXc-Node-9" class="mjx-mn" style=""><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.369em; padding-bottom: 0.369em;">2</span></span></span></span><span id="MJXc-Node-10" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>M</mi><mi>N</mi><msup><mi>K</mi><mn>2</mn></msup><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-1">O(MNK^2)</script></span> operation. For arbitrary kernels, this is unavoidable without using Fourier domain tricks that we haven’t covered. However, numpy’s array processing routines are highly optimized and allow for huge speedups of array operations relative to Python <code>for</code> loops, which must be executed line by line by the Python interpreter.</p>
+<p>As usual, you should focus on getting a correct solution first. I strongly encourage you to write a slow version with as many nested for loops as you need. Then, see if you can eliminate some of the nested loops by batching computations with numpy array operations. Because the rest of the assignment depends heavily on this function, it’s worth some effort to optimize it. One way to go about this is to look in the code for computations that could be batched together as array operations. Another would be to play around with the equation for calculating cross correlation and try rearranging terms to minimize repetition.</p>
+<p>A full-credit solution will use only two <code>for</code> loops to loop over the values in the <strong>kernel</strong> (not the image), for a total of only 9 python for loop iterations given a 3x3 kernel. That said, most of the efficiency points are awarded for an asymptotically efficient approach (see the rubric for details on the efficiency points). Try not to sacrifice readability: make sure your approach is well-commented if you’re making any nontrivial optimizations.</p>
+<h5 id="convolve_2d">2. <code>convolve_2d</code></h5>
+<p>This one’s not so bad - you should make use of your cross-correlation function to implement this in a small few lines.</p>
+<h5 id="gaussian_blur_kernel_2d">3. <code>gaussian_blur_kernel_2d</code></h5>
+<p>This function generates a Gaussian blur filter of a given size.The coordinate system of a filter places (0,0) at the middle of its center pixel, and pixel centers are assumed to be spaced 1 unit apart. Evaluate the Gaussian function (given in the lecture slides) with the given <span class="math inline"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-2-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;&amp;#x03C3;&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 117%; position: relative;"><span id="MJXc-Node-11" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-12" class="mjx-mrow"><span id="MJXc-Node-13" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.186em; padding-bottom: 0.308em; padding-right: 0.001em;">σ</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>σ</mi></math></span></span><script type="math/tex" id="MathJax-Element-2">\sigma</script></span> for the position of each pixel in a filter of the given dimensions.</p>
+<p>We’d like our filter values to sum to one; meanwhile, one property of a Gaussian function is that its integral over the entire domain is one. This means if our filter has finite size, its values won’t (quite) sum to 1. Because we want to preserve overall image brightness, you should re-normalize the values in your Gaussian kernel so that they do sum to exactly 1.</p>
+<h5 id="low_pass">4. <code>low_pass</code></h5>
+<p>Recall that a low-pass filter leaves lower frequencies alone while attenuating high frequencies. This is exactly blurring does, so using the functions you’ve already implemented makes this one pretty short.</p>
+<h5 id="high_pass">5. <code>high_pass</code></h5>
+<p>A high-pass filter does the opposite of a low-pass filter: it preserves high frequencies while eliminating low frequencies. We could achieve this with a single filter, but it’s easier and barely less efficient to simply subtract the low-pass image from the original to get the high-pass result.</p>
+<h4 id="testing">Testing</h4>
+<p><code>test.py</code> provides you with a non-exhaustive set of unit tests that you may find helpful for debugging.</p>
+<h3 id="hybrid-images">Hybrid Images</h3>
+<p>Hybrid images like the one at the top of this page are made by combining two different images, one low-pass filtered and one high-pass filtered. For example, the image at the top of the page is generated from these two images:</p>
+<center>
+<img src="./CSCI 497P_597P Project 1_ Filtering_files/low_frequencies.jpg" style="zoom:67%;"><img src="./CSCI 497P_597P Project 1_ Filtering_files/high_frequencies.jpg" style="zoom:67%;">
+</center>
+<p>Adding the two together gives you the image at the top of this page. One easy way to visualize the effect is to view progressively downsampled versions of the image (i.e., a Gaussian pyramid):</p>
+<p><img src="./CSCI 497P_597P Project 1_ Filtering_files/cat_hybrid_image_scales.jpg" style="zoom:67%;"></p>
+<p>You can also use your browser’s zoom functionality to resize images when viewing them in a web browser.</p>
+<p>The function <code>create_hybrid_images</code> has been implemented for you. Its parameters permit the caller to choose whether each image is high- or low-pass filtered, as well as the sigma and kernel size for each filter.</p>
+<p>The file <code>hybrid_gui.py</code> is a program that lets you see the results of creating hybrid images, and play with parameters interactively. This is where it becomes really nice to have your cross-correlation running blazing fast.</p>
+<h4 id="using-the-gui">Using the GUI</h4>
+<p>The GUI allows you to load two images, align them, then combine different frequency content from each image into a single hybrid image. Start by clicking “Load First Image”, loading <code>resources/dog.jpg</code>, then “Load Second Image”, and load <code>resources/cat.jpg</code>. Now, you’ll click three points on each image to help the program align them. Click the dog’s left eye, right eye, and tongue (in that order). Then click the cat’s left eye, right eye, and nose. Now click “View Hybrid”, where you’ll see the combined image in the middle. You can now play around with the filter size and blur width (sigma) of each filter.</p>
+<p>You can also save and load correspondences and filter configurations. A preset that gets you something somewhat close to the image at the top of this page can be loaded with the following command:</p>
+<pre><code>python3 hybrid_gui.py -t resources/sample-correspondence.json -c resources/sample-config.json</code></pre>
+<p><em>Note:</em> The result from this preset will not match the result on this webpage (which comes directly from the SIGGRAPH paper) because our implementation is a simplified version than theirs.</p>
+<h2 id="part-2-laplacian-detail-enhancement">Part 2: Laplacian Detail Enhancement</h2>
+<p>In class we talked about how Laplacain pyramids can be used to separate out different slices of frequency content in an image. One straightforward application of these is to apply weights to independently boost or attenuate specific levels of the pyramid when reconstructing. For example, I took this image of a beach:</p>
+<p><img src="./CSCI 497P_597P Project 1_ Filtering_files/beach.jpg"></p>
+<p>I built a 7-level Laplacian pyramid, then chose weights that were less than one for the two lowest-frequency levels, greater than one for two middle-frequency levels, and less than one for the highest three. Reconstructing with the levels weighted this way results in an image with the low and high frequencies muted, and the mid-frequency contrasts enhanced:</p>
+<p><img src="./CSCI 497P_597P Project 1_ Filtering_files/beach_edit.jpg"></p>
+<p>Your task in this section is to implement the two functions <code>construct_laplacian</code> and <code>reconstruct_laplacian</code>. For an overview of how this is done, take a look back at the lecture slides. The sections below specify the differences from the basic version presented in lecture. To keep things simple, this function assumes that the dimensions of your image are divisible by 2 enough times to do simple 2x down- and up-sampling for each level of the pyramid without any integer division roundoff error in dimensions.</p>
+<h5 id="construct_laplacian">1. <code>construct_laplacian</code></h5>
+<p>In lecture, we computed the high-pass image as <code>L_i = f - blur(f)</code>. The problem with this appraoch is that when we go to reconstruct, the upsampled image that will get added to the current high-pass image doesn’t exactly equal <code>blur(f)</code>, and so <code>L_i + upsample(rec)</code> won’t exactly equal the original <code>f</code> (here, <code>rec</code> refers to the thus-far reconstructed image from the next smaller level of the pyramid). We can solve this by tweaking the algorithm a little to compute the high-pass image based on <em>exactly what we’ll have when reconstructing</em>, namely, <code>upsample(rec)</code>. Instead of <code>L_i = f - blur(f)</code>, we’ll instead do the down and upsampling up front so we can save the precise difference: <code>L_i = f - upsample(subsample(blur(f)))</code>.</p>
+<p>You will probably find it helpful to make some helper methods here for down- and up-sampling. You can use a blur filter of your choice, but you should use the same filter for downsampling and upsampling (reconstruction). <a href="http://persci.mit.edu/pub_pdfs/pyramid83.pdf">The original paper</a> uses an approximately-Gaussian 5x5 kernel for a good balance between efficiency and quality.</p>
+<h5 id="reconstruct_laplacian">2. <code>reconstruct_laplacian</code></h5>
+<p>The reconstruction procedure follows the one presented in lecture with one modification: each level of the pyramid can be multiplied by a scalar weight before being added back into the result image. This allows for independent manipulation of frequency slices independently. The function takes a <code>weights</code> parameter that can be <code>None</code>, in which case the weights are assumed to be all 1, or a list containing one weight per level of the pyramid.</p>
+<p>When both methods are implemented, you should be able to call <code>reconstruct</code> on the output of <code>construct</code> with <code>weights=None</code> and get a visually identical image back (there may be imperceptible differences due to compression and quantization).</p>
+<h4 id="gui">GUI</h4>
+<p>A barebones GUI program is provided in <code>laplacian_gui.py</code> that allows you to interactively edit images using your Laplacian pyramid function. You can run the GUI with no arguments and load an image using the button. You can also specify an input image to load immediately with the <code>--image</code> (<code>-i</code>) flag, and a number of pyramid levels to compute (the default is 5) with the <code>--levels</code> (<code>-l</code>) flag. For example, running:</p>
+<pre><code>python3 laplacian_scratch.py -i resources/beach.jpg -l 7</code></pre>
+<p>loads the beach image and allows you to edit it using a 7-level pyramid. As with the hybrid GUI, you can save out the edited image with the Save Image button.</p>
+<h2 id="artifacts">Artifacts</h2>
+<p>Now that you’ve made some nifty image editing tools, use them to make some cool images. Find your own source images and create your own hybrid image. I suggest reading Section 2.2 of the <a href="http://olivalab.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf">paper</a> and taking a look at their <a href="http://olivalab.mit.edu/hybrid_gallery/gallery.html">hybrid images gallery</a> for guidance and inspiration on what kinds of image pairs make good hybrids.</p>
+<p>Also pick a photo and use the Laplacian pyramid editor to edit different frequency bands to create an an intersesting result.</p>
+<p>Optionally, post your artifacts on Instagram and use a hashtag such as #laplacianfilter or #highpassfilter to make sure people know how clever you are.</p>
+<p>I will collect the artifacts into a showcase webpage and the class will get the opportunity to vote on their favorites. The top three artifacts will receive a nominal amount of extra credit.</p>
+<h2 id="submission">Submission</h2>
+<ol type="1">
+<li>On the first line of <code>hours.txt</code>, write an estimated (integer) number of hours you spent on this assignment. On the line below the number of hours, feel free to tell me how the assignment went, any parts you found particularly challenging, or anything else you want me to know.</li>
+<li>Push your final changes to the P1 repository to github before the code deadline.</li>
+<li>Submit <code>hybrid.jpg</code>, your hybrid image artifact, and <code>laplacian.jpg</code>, your Laplacian edited artifact, to the P1 assignment on Canvas by the artifact deadline.</li>
+</ol>
+<h2 id="rubric">Rubric</h2>
+<p>Points are awarded for correctness and efficiency, and deducted for issues with clarity or submission mechanics.</p>
+<table>
+<colgroup>
+<col style="width: 36%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Correctness (30 points)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Filtering (20 points)</td>
+<td>Correctness as determined by automated tests.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Laplacian construction (4 points)</td>
+<td>Construction produces a correct Laplacian pyramid.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Laplacian reconstruction (4 points)</td>
+<td>Unweighted reconstructed image is visually identical to the original.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Laplacian editing (2 points)</td>
+<td>Reconstruction correctly applies weights to individual levels.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Efficiency (15 points)</strong></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10 points</td>
+<td>Filtering routines are asymptotically efficient</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3 points</td>
+<td><code>cross_correlation_2d</code> uses vectorization to avoid quadruply-nested for loops</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2 points</td>
+<td><code>cross_correlation_2d</code> uses no more than 2 nested python loops that traverse over the kernel, not the image</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Artifacts (2 points each)</strong></td>
+<td>Artifacts are submitted to Canvas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>hours.txt (1 point)</strong></td>
+<td>hours.txt contains a single integer on the first with the approximate number of hours you spent on the assignment</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Clarity</strong> Deductions for poor coding style may be made. Please see the syllabus for general coding guidelines. Up to two points may be deducted for each of the following:</p>
+<ul>
+<li>Methods should be written as concisely and clearly as possible</li>
+<li>Methods should not be too long - use helper methods to break code into sensible subroutines</li>
+<li>Code should not be cryptic and terse - explain nontrivial blocks with comments</li>
+<li>Methods you introduce should be accompanied by a precise specification</li>
+<li>Variable and function names should be informative but not overly verbose</li>
+</ul>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>This assignment is based on versions developed and refined by Noah Snavely, Kavita Bala, James Hays, Derek Hoiem, and numerous underappreciated TAs.</p>
+
+
+</body></html>
