@@ -1,0 +1,32 @@
+Sean McCulloch's plane sweep stereo extension
+
+extended_plane_sweep_stereo.py is a modification of the provided plane_sweep_stereo.py
+
+
+The modifications were made as part of the CSCI597P extension portion of P3.
+
+The extension aims to improve the results of the plane sweep stereo algorithm by reducing 
+erroneous noise in the depth estimations.
+
+This is done by comparing the the solution of each pixel (solution being the argmax of the cost volume)
+with surrounding solutions. If the pixel's solution is determined to be an outlier relative to its neighbors, its
+solution is replaced by the mean of the surrounding solutions. The size of the patch of surrounding solutions 
+which are used to calculated the mean and determine outlier status is determined by sys.argv[2]
+
+Outliers are determined by the solution's Z-score, with the threshold of sys.argv[3].
+
+Usage:
+python ./extended_plane_sweep_stereo.py <dataset> <mean-patch-size> <std-threshold>
+
+Example
+python ./extended_plane_sweep_stereo.py tentacle 11 2
+
+
+This modification is entirely contained in the clean_outlier_noise() function.
+This function is called on the solution matrix, directly after it is created by the argmax call.
+
+This extended algorithm was run on the datasets: tentacle Flowers Bycicle1 Couch. The example parameters (11, 2) were used with all of these datasets.
+
+Side-by-side comparisons can be seen in results.pdf
+
+While the difference is not dramatic, the modification did remove some small patches of noise. This effect is most obvious in the tentacle dataset. This may be a result of choosing parameters that were effective for the tentacle dataset during testing.
