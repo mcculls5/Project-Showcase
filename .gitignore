@@ -1,9 +1,2 @@
 templates/*
-Bioinformatics/Protein_Energy_and_Rigidity/bioinformatics_project-no_raw.zip
-Computer_Vision/Hybrid_Images/p1-mcculls5-master.zip
-Computer_Vision/Panorama_Stitching/p2-maxismailov-master.zip
-Computer_Vision/Stereo_Vision_Depth_Map/p3-mcculls5-master.zip
-Computer_Vision/Convolutional_Networks/Actual_Version_CS497P_Project4_Main_Notebook-1.ipynb
-Computer_Vision/Convolutional_Networks/Copy_of_Max_And_Sean_CSCI597P_MNISTChallenge-1.ipynb
-Operating_System_Internals/Virtual_Kernel/blitz.zip
-Operating_System_Internals/Virtual_Kernel/csci509_f19-a7.zip
+**/src/*
