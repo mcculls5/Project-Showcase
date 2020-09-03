@@ -19,7 +19,9 @@ The purpose of this list is to document my experience rather than to host workin
 - Object-Oriented Design
   - Boardgame Implementation
 - Computer Networks
-  - Boggle Server and Client
+  - Hangman
+  - Boggle
+  - Simple Chat Room
   
 
   
