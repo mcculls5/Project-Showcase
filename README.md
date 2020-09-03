@@ -14,8 +14,12 @@ The purpose of this list is to document my experience rather than to host workin
   - Panorama Stitching
   - Stereo Vision Depth Map
   - Convolutional Networks
-- Virtual Kernel
-- Object-Oriented Boardgame Implementation
+- Operating System Internals
+  - Virtual Kernel
+- Object-Oriented Design
+  - Boardgame Implementation
+- Computer Networks
+  - Boggle Server and Client
   
 
   
