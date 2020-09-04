@@ -14,8 +14,8 @@ Object-Oriented design patterns were used to implement the Deadwood boardgame in
 - Experience with software Use-cases and UML diagrams.
 
 ## Contents
-As this project is related to classwork, code must be omitted.
+As this project is related to classwork, the raw Java code must be omitted.
 - **instructions/** : Contains the assignment instructions that outline the learning goals and tasks completed. 
-- **Game.exe** : An executable version of the finished game.
 - **resources/** : XML and images required for Game.exe.
+- **Game.exe** : An executable version of the finished game.
 - **Game-Rules.pdf** : The gameplay rules of the original boardgame.
