@@ -1,7 +1,12 @@
 # Chat Room
 
 ## Overview
-A server and client for the Boggle game. These were implemented in the C programming language using the Socket API to create TCP connections. The server pairs incoming clients for each two-player game session. Threading is used to allow many separate game instances to be played simultaneously.
+Server and clients for a simple chat room application. These were implemented in the C programming language using the Socket API to create TCP connections. Participant-clients send messages to the server. Observer-clients associate with participant-clients via username to receive and display the appropriate messages. The server uses select(2) to manage many connections on multiple ports.
+
+## Skills & Experience Gained
+- Improved proficiency in the C programming language.
+- Experience using the socket(2) api.
+- Knowledge of networking concepts.
 
 ## Contents
 As this project is related to classwork, raw code must be omitted.
