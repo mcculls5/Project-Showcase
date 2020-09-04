@@ -6,6 +6,7 @@ A few visualizations were created as an exploration into the use of data visuali
 
 ## Contents
 As this project is related to classwork, code must be omitted.
+- **A Day in the Life of a Supercomputer.pdf** : Poster that was presented at Western Washington University's 2019 Scholar's Week.
 - **dataset.csv** : Anonymized data used to generate the visualizations.
 - **Node Performance.png** : An simple visualization of node performance. Highlights the disparity of performance throughout the cluster.
 - **Node Usage.png** : An interactive heatmap visualization of node usage. May help to identify improvements for the cluster's scheduling algorithm.
