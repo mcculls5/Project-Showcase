@@ -1,7 +1,7 @@
 # Chat Room
 
 ## Overview
-Server and clients for a simple chat room application. These were implemented in the C programming language using the Socket API to create TCP connections. Participant-clients send messages to the server. Observer-clients associate with participant-clients via username to receive and display the appropriate messages. The server uses select(2) to manage many connections on multiple ports.
+Server and clients for a simple chat room application. These were implemented in the C programming language using the Socket API to create TCP connections. Participant-clients send messages to the server. Observer-clients associate with participant-clients via username to receive and display appropriate public and private messages. The server uses select(2) to manage many connections on multiple ports.
 
 ## Skills & Experience Gained
 - Improved proficiency in the C programming language.
