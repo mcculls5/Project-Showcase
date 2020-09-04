@@ -1,5 +1,4 @@
 # Deadwood Boardgame Implementation
-<img src="https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Boardgame_Implementation/Game.png" alt="Image of Game.exe gameplay" width="800"/>
 
 ![Image of Game.exe gameplay](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Boardgame_Implementation/Game.png)
 
