@@ -18,10 +18,12 @@ The purpose of this list is to document my experience rather than to host workin
   - Virtual Kernel
 - Object-Oriented Design
   - Boardgame Implementation
-- Computer Networks
+- Network Programming
   - Hangman
   - Boggle
-  - Simple Chat Room
+  - Chat Room
+- Visualization
+  - High Performance Computing
   
 
   
