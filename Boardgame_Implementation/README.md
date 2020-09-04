@@ -1,4 +1,7 @@
 # Deadwood Boardgame Implementation
+<img src="https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Boardgame_Implementation/Game.png" alt="Image of Game.exe gameplay" width="800"/>
+
+![Image of Game.exe gameplay](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Boardgame_Implementation/Game.png)
 
 ## Overview
 Object-Oriented design patterns were used to implement the Deadwood boardgame in Java. This includes the use of interfaces, abstract classes, state machines, observers and observables. OOP Concepts of inheritance, polymorphism, abstraction, and encapsulation were emphasized in the program's design.
