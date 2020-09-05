@@ -1,8 +1,12 @@
 # Visualizing High Performance Computing (HPC)
 
 ## Overview
-A few visualizations were created as an exploration into the use of data visualization in the domain of high performance computing. These visualizations were created using anonymized data provided by Lawrence Livermore National Laboratory.
+Multiple visualizations were created as an exploration into the use of data visualization in the domain of high performance computing. These visualizations were created using anonymized data provided by Lawrence Livermore National Laboratory.
 
+## Skills & Experience Learned
+- Experience cleaning, processing, and managing large datasets
+- Experience creating interactive, data-driven visualizations with D3.js
+- Experience using data visualization to identify solutions to intricate problems.
 
 ## Contents
 As this project is related to classwork, code must be omitted.
