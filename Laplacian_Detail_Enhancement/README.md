@@ -8,9 +8,9 @@ Implemented the construction of a Laplacian pyramid, with variable weights for e
 Assignment instructions may still be available here: https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/
 
 ## Skills & Experience Gained
--Improved proficiency with Numpy, opencv-python libraries.
--Thorough knowledge of image upsampling & downsampling algorithms
--Experience writing python with emphasis on efficiency and performance.
+- Improved proficiency with Numpy, opencv-python libraries.
+- Thorough knowledge of image upsampling & downsampling algorithms
+- Experience writing python with emphasis on efficiency and performance.
 
 ## Contents
 As this project is related to classwork, code must be omitted.

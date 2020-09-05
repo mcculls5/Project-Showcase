@@ -1,6 +1,6 @@
 # Protein Energy and Rigidity
 
-In this research-oriented project, I worked in an interdisciplinary group of Biology and Computer Science students to explore potential metrics to predict the effects of single point protein substitution mutations. We modified an existing pipeline that generated energy-minimized mutant proteins *in silico*.
+In this research-oriented project, I worked in an interdisciplinary group of Biology and Computer Science students to investigate the use of protein energy and rigidity to predict the effects mutations. We modified an existing pipeline that generated energy-minimized mutant proteins *in silico*.
 
 We investigated the use of protein structure data produced by the energy-minimization process as well as rigid atom clusters to create and test various metrics.
 

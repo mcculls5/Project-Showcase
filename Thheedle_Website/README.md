@@ -6,4 +6,4 @@
 ## Skills & Experience Gained
 - Experience using designing, implementing and deploying a website from start to finish.
 - Experience with NPM and Node.js.
-- Improved proficiency with HTML, CSS, Javascript
+- Improved proficiency with HTML, CSS, Javascript.

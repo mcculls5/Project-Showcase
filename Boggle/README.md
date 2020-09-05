@@ -11,5 +11,5 @@ A server and client for the Boggle game. These were implemented in the C program
 ## Contents
 As this project is related to classwork, the raw C code must be omitted.
 - **instructions/** : Contains the assignment instructions that outline the learning goals and tasks completed. 
-- **server** : The compiled server program
-- **client** : The compiled client program
+- **server** : The compiled server program.
+- **client** : The compiled client program.

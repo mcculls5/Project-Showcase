@@ -1,9 +1,9 @@
-# Panorama Stitching
+# Stereo Vision Depth Map
 
 ![Estimated Depth Map](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Stereo_Vision_Depth_Map/output/extended/tentacle_ncc.png)
 
 ## Overview
-Implemented the two-view plane sweep stereo algorithm. A depth map is generated, given two calibrated images of the same scene. I extended this project to improve the resulting depth map by identifying and reducing erroneous noise in the depth estimations.
+Implemented a two-view plane sweep stereo algorithm. A depth map is generated, given two calibrated images of the same scene. I extended this project to improve the resulting depth map by identifying and reducing erroneous noise in the depth estimations.
 
 
 Assignment instructions may still be available here:	https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p3/

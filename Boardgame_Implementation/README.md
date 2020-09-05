@@ -1,4 +1,4 @@
-# Deadwood Boardgame Implementation
+# Boardgame Implementation
 
 ![Image of Game.exe gameplay](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Boardgame_Implementation/Game.png)
 
@@ -13,7 +13,7 @@ Object-Oriented design patterns were used to implement the Deadwood boardgame in
 ## Skills & Experience gained
 - Improved proficiency of Java.
 - Experience using OOP concepts and design-patterns.
-- Experience with software Use-cases and UML diagrams.
+- Experience with software use-cases and UML diagrams.
 
 ## Contents
 As this project is related to classwork, the raw Java code must be omitted.

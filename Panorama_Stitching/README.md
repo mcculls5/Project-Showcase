@@ -3,9 +3,9 @@
 ![Panorama](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Panorama_Stitching/park_panorama.jpg)
 
 ## Overview
-Implemented panorama stitching using Random Sample Consensus. This involved the intermediate steps of warping images to spherical coordinates, extracting and matching image features and aligning neighboring images using RANSAC. 
+Implemented panorama stitching using the Random Sample Consensus algorithm. This involved the intermediate steps of warping images to spherical coordinates, extracting and matching image features and aligning neighboring images using RANSAC. 
 
-Assignment instructions may still be available here:	https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/
+Assignment instructions may still be available here: https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p2/
 
 ## Skills & Experience Gained
 - Experience implementing feature recognition & feature matching algorithms.
