@@ -1,6 +1,6 @@
 # Convolutional Networks
-![Dog Class Saliency](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Convolutional_Networks/dog%20class%20saliency.png)
-![Strawberry Class](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Convolutional_Networks/strawberry%20class.png)
+![Dog Class Saliency](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/CNN_Exploration/dog%20class%20saliency.png)
+![Strawberry Class](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/CNN_Exploration/strawberry%20class.png)
 ## Overview
 Used Google Colab and PyTorch for the following:
 - Implemented a visualization of AlexNet structure and its activations.  

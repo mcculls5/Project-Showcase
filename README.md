@@ -8,8 +8,8 @@ The purpose of this list is to document my experience rather than to host workin
 ## Highlights
 ### Physiological Visualization Research
 This research project explored the use of data visualization techniques to identify challenges faced by college students on the autism spectrum. As my undergraduate capstone project, I gained many fundamental skills of data analysis and visualization. Through my work on this project, I learned how to use visualization to identify novel insights in large datasets.
-### Convolutional Networks
-In this final assignment for my graduate computer vision class, I gained a deep understanding of ConvNets by interacting with them in unconventional ways. This included visualizing the activations of a ConvNet and intentionally fooling AlexNet.
+### Convolutional Neural Network Exploration
+In this final assignment for my graduate computer vision class, I gained a deep understanding of CNNs by interacting with them in unconventional ways. This included visualizing the activations of a CNN and intentionally fooling AlexNet.
 ### Protein Energy/Rigidity Analysis and Visualization
 In this research-oriented project, I worked in an interdisciplinary group of Biology and Computer Science students to explore potential predictive metrics of the effects single point mutations have on the properies of a protein.
 
@@ -19,7 +19,7 @@ In this research-oriented project, I worked in an interdisciplinary group of Bio
   - High Performance Computing
   - Physiological Visualization Research
 - **Machine Learning**
-  - Convolutional Networks
+  - CNN Exploration
 - **Bioinformatics**
   - Protein Energy/Rigidity Analysis and Visualization
 - **Computer Vision**
