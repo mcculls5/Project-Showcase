@@ -1,5 +1,7 @@
 # Visualizing High Performance Computing (HPC)
 
+![Node Usage Visualization](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/High_Performance_Computing/Node%20Usage.png)
+
 ## Overview
 Multiple visualizations were created as an exploration into the use of data visualization in the domain of high performance computing. These visualizations were created using anonymized data provided by Lawrence Livermore National Laboratory.
 
