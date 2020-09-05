@@ -1,4 +1,4 @@
-# Physionlogical Visualization Research
+# Physiological Visualization Research
 
 ## Overview
 Reasearch in collaboration with Dr. Moushumi Sharmin and Dr. Shameem Ahmed of Western Washington University, Joe Gildner, and Bradley Hoefel.
