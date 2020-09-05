@@ -15,3 +15,4 @@ This ongoing research project explores the use of data visualization techniques 
 - **IEEE-VIS-2019 Poster.pdf** : Poster that was presented at the IEEE-VIS 2019 conference.
 - **Neurodivergent Visual Analytics Poster.pdf** : Poster that was presented at Western Washington University's 2019 Scholar's Week.
 - **AINA Dashboard Presentation.pdf** : Project presention for Western Washington University's Computer Science graduating class of 2020.
+- **VideoPreview.mp4** : Video Demo for IEE-VIS 2019 conference.
