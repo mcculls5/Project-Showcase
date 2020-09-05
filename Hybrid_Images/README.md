@@ -1,9 +1,16 @@
 # Hybrid Images
 
+![Hybrid Image](https://raw.githubusercontent.com/mcculls5/Project-Showcase/master/Hybrid_Images/hybrid.jpg)
+
 ## Overview
 Efficiently implemented 2 dimensional cross correlation and convolution. This was used with a high frequency and low frequency filters to create combined hybrid images. 
  
 Assignment instructions may still be available here: https://facultyweb.cs.wwu.edu/~wehrwes/courses/csci497p_20s/p1/
+
+## Skills & Experience Gained
+- Thorough knowlege of convolution, cross correlation algorithms.
+- Experience using numpy and opencv-python libraries.
+- Improved proficiency with python.
 
 ## Contents
 As this project is related to classwork, code must be omitted.
