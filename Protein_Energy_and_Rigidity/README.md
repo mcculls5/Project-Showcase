@@ -4,6 +4,11 @@ In this research-oriented project, I worked in an interdisciplinary group of Bio
 
 We investigated the use of protein structure data produced by the energy-minimization process as well as rigid atom clusters to create and test various metrics.
 
+## Skills & Experience Gained
+- Experience using publicly available bioinformatics tools
+- Experience implementing domain-specific algorithms.
+- Experience storing, managing, and using large datasets.
+
 ## Contents
 As this project is related to classwork, some code must be omitted.
 - **Final Report.pdf** : Describes the results of our exploration.
