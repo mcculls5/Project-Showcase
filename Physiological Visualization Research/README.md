@@ -3,7 +3,7 @@
 ## Overview
 Reasearch in collaboration with Dr. Moushumi Sharmin and Dr. Shameem Ahmed of Western Washington University, Joe Gildner, and Bradley Hoefel.
 
-This ongoing research project explored the use of data visualization techniques to identify challenges faced by college students on the autism spectrum.
+This ongoing research project explores the use of data visualization techniques to identify challenges faced by college students on the autism spectrum.
 
 ## Skills & Experience Gained
 - Experience using data visualization to identify patterns in large datasets.
