@@ -14,6 +14,12 @@ In this final assignment for my graduate computer vision class, I gained a deep 
 In this research-oriented project, I worked in an interdisciplinary group of Biology and Computer Science students to explore potential predictive metrics of the effects single point mutations have on the properies of a protein.
 
 ## Contents
+
+- **Data Visualization**
+  - High Performance Computing
+  - Physiological Visualization Research
+- **Machine Learning**
+  - Convolutional Networks
 - **Bioinformatics**
   - Protein Energy/Rigidity Analysis and Visualization
 - **Computer Vision**
@@ -21,19 +27,11 @@ In this research-oriented project, I worked in an interdisciplinary group of Bio
   - Laplacian Detail Enhancement
   - Panorama Stitching
   - Stereo Vision Depth Map
-- **Machine Learning**
-  - Convolutional Networks
-- **Operating System Internals**
-  - Virtual Kernel
 - **Object-Oriented Design**
   - Boardgame Implementation
 - **Network Programming**
-  - Hangman
   - Boggle
   - Chat Room
-- **Data Visualization**
-  - High Performance Computing
-  - Physiological Visualization Research
 - **Full Stack Web Development**
   - Thheedle Website
   - Lean Factory Management Simulator
